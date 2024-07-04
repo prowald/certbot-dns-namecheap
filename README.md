@@ -49,6 +49,8 @@ certbot plugins
 certbot certonly \
   -a certbot-dns-namecheap:dns-namecheap \
   --dns-namecheap-credentials ~/.secrets/certbot/namecheap.ini \
+  --agree-tos \
+  -email "your@mail.com" \
   -d example.com \
   --test-cert
   ```
