@@ -33,7 +33,7 @@ The path to this file can be provided by using the `--dns-namecheap-credentials`
 - If you know what you're doing install the plugin into the same python environment like `certbot`. In any other case follow the `Docker` approach above:
 
 ```sh
-git clone https://github.com/iHamsterball/certbot-dns-namecheap.git
+git clone https://github.com/prowald/certbot-dns-namecheap.git
 pip install certbot-dns-namecheap/
 ```
 
