@@ -20,7 +20,7 @@ class AuthenticatorTest(test_util.TempDirTestCase,
     def setUp(self):
         super(AuthenticatorTest, self).setUp()
 
-        from certbot_dns_namecheap.dns_namecheap import Authenticator
+        from certbot_dns_namecheap._internal.dns_namecheap import Authenticator
 
         path = os.path.join(self.tempdir, 'file.ini')
         credentials = {
@@ -44,7 +44,7 @@ class NamecheapLexiconClientTest(unittest.TestCase, dns_test_common_lexicon.Base
     LOGIN_ERROR = HTTPError('403 Client Error: Forbidden')
 
     def setUp(self):
-        from certbot_dns_namecheap.dns_namecheap import _NamecheapLexiconClient
+        from certbot_dns_namecheap._internal.dns_namecheap import _NamecheapLexiconClient
 
         self.client = _NamecheapLexiconClient(
             USERNAME, API_KEY, 0, 'example.com'

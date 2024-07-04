@@ -1,0 +1,1 @@
+"""Internal implementation of `~certbot_dns_namecheap.dns_namecheap` plugin."""
