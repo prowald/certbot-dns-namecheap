@@ -4,18 +4,13 @@ from setuptools import setup
 from setuptools import find_packages
 
 
-version = '0.27.0.dev0'
+version = '1.0.0.dev0'
 
 # Remember to update local-oldest-requirements.txt when changing the minimum
 # acme/certbot version.
 install_requires = [
-    'acme>=0.21.1',
-    'certbot>=0.21.1',
-    'dns-lexicon>=2.2.1', # Support for >1 TXT record per name
-    'mock',
-    'setuptools',
-    'zope.interface',
-    'PyNamecheap'
+    'dns-lexicon>=3.14.1',
+    'setuptools>=41.6.0',
 ]
 
 docs_extras = [
@@ -61,7 +56,7 @@ setup(
     },
     entry_points={
         'certbot.plugins': [
-            'dns-namecheap = certbot_dns_namecheap.dns_namecheap:Authenticator',
+            'dns-namecheap = certbot_dns_namecheap._internal.dns_namecheap:Authenticator',
         ],
     },
     test_suite='certbot_dns_namecheap',

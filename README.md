@@ -20,33 +20,13 @@ Use of this plugin requires a configuration file containing Namecheap API creden
 
 ```ini
 # Namecheap API credentials used by Certbot
-certbot_dns_namecheap:dns_namecheap_username=my-username
-certbot_dns_namecheap:dns_namecheap_api_key=my-api-key
+dns_namecheap_username = User
+dns_namecheap_api_key = Token
+
 ```
 
-The path to this file can be provided by using the `--certbot_dns_namecheap:dns-namecheap-credentials` command-line argument.
+The path to this file can be provided by using the `--dns-namecheap-credentials` command-line argument.
 
-## Usage
-
-### Docker
-
-- **Recommended usage**. Create the credentials file and 2 folders for the certificates and logs and run:
-
-```sh
-docker run -it --rm \
-  -v $(pwd)/certs:/etc/letsencrypt \
-  -v $(pwd)/logs:/var/log/letsencrypt \
-  -v $(pwd)/namecheap.ini:/namecheap.ini \
-  schubc/certbot-dns-namecheap certonly \
-  -a certbot-dns-namecheap:dns-namecheap \
-  --certbot-dns-namecheap:dns-namecheap-credentials=/namecheap.ini \
-  --agree-tos \
-  -email "your@mail.com" \
-  -d example.com \
-  --test-cert
-```
-
-- After a successful run, remove the last parameter `--test-cert` which enabled [staging server](https://letsencrypt.org/docs/staging-environment/) and run again.
 
 ## Python
 
@@ -68,9 +48,8 @@ certbot plugins
 ```sh
 certbot certonly \
   -a certbot-dns-namecheap:dns-namecheap \
-  --certbot-dns-namecheap:dns-namecheap-credentials=/namecheap.ini \
-  --agree-tos \
-  -email "your@mail.com" \
+  --dns-namecheap-credentials ~/.secrets/certbot/namecheap.ini \
   -d example.com \
   --test-cert
   ```
+- After a successful run, remove the last parameter `--test-cert` which enabled [staging server](https://letsencrypt.org/docs/staging-environment/) and run again.

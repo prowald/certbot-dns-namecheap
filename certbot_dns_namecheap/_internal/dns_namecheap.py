@@ -10,9 +10,10 @@ from certbot.plugins import dns_common_lexicon
 
 logger = logging.getLogger(__name__)
 
-API_URL="https://ap.www.namecheap.com/settings/tools/apiaccess/"
+API_URL = "https://ap.www.namecheap.com/settings/tools/apiaccess/"
 
-class Authenticator(dns_common_lexicon.DNSAuthenticator):
+
+class Authenticator(dns_common_lexicon.LexiconDNSAuthenticator):
     """DNS Authenticator for Namecheap
 
     This Authenticator uses the Namecheap API to fulfill a dns-01 challenge.
@@ -43,7 +44,7 @@ class Authenticator(dns_common_lexicon.DNSAuthenticator):
     def _provider_name(self) -> str:
         return 'namecheap'
 
- def _handle_http_error(self, e: HTTPError, domain_name: str) -> errors.PluginError:
+    def _handle_http_error(self, e: HTTPError, domain_name: str) -> errors.PluginError:
         hint = None
         if str(e).startswith('401 Client Error: Unauthorized for url:'):
             hint = 'Are your email and API token values correct?'
