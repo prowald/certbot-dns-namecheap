@@ -21,8 +21,10 @@ Credentials
 -----------
 
 Use of this plugin requires a configuration file containing Namecheap
-API credentials. The API must be enabled for the account and the IP address
-given as ``dns_namecheap_client_ip`` must be whitelisted in Namecheap.
+API credentials. The API must be enabled for the account. The optional
+``dns_namecheap_client_ip`` is the public IPv4 address sent to Namecheap; if it
+is omitted, it is detected automatically. The older name
+``dns_namecheap_api_key`` is accepted instead of ``dns_namecheap_token``.
 
 .. code-block:: ini
    :name: credentials.ini
@@ -31,7 +33,8 @@ given as ``dns_namecheap_client_ip`` must be whitelisted in Namecheap.
    # Namecheap API credentials used by Certbot
    dns_namecheap_username = my-username
    dns_namecheap_token = my-api-key
-   dns_namecheap_client_ip = 203.0.113.1
+   # optional, detected automatically if omitted
+   # dns_namecheap_client_ip = 203.0.113.1
 
 The path to this file must be provided using the
 ``--dns-namecheap-credentials`` command-line argument.

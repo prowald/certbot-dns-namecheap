@@ -20,24 +20,25 @@ Namecheap has certain requirements for activation to prevent system abuse. In or
 - have at least $50 on your account balance;
 - have at least $50 spent within the last 2 years.
 
-Enable API access and whitelist the public IPv4 address of the machine running Certbot on the [API Access page](https://ap.www.namecheap.com/settings/tools/apiaccess/) of your Namecheap account. Requests from IP addresses that are not whitelisted are rejected by Namecheap.
+Enable API access and whitelist the public IPv4 address of the machine running Certbot on the [API Access page](https://ap.www.namecheap.com/settings/tools/apiaccess/) of your Namecheap account.
 
 ## Credentials
 
-Use of this plugin requires a configuration file containing your Namecheap API credentials. All three values are required:
+Use of this plugin requires a configuration file containing your Namecheap API credentials:
 
 ```ini
 # Namecheap API credentials used by Certbot
 dns_namecheap_username = my-username
 dns_namecheap_token = my-api-key
-dns_namecheap_client_ip = 203.0.113.1
+# Optional: detected automatically if omitted
+# dns_namecheap_client_ip = 203.0.113.1
 ```
 
-| Key                       | Description                                              |
-| ------------------------- | -------------------------------------------------------- |
-| `dns_namecheap_username`  | Username of your Namecheap account                       |
-| `dns_namecheap_token`     | API key from the API Access page                         |
-| `dns_namecheap_client_ip` | Public IPv4 address whitelisted on the API Access page   |
+| Key                       | Required | Description                                                                               |
+| ------------------------- | -------- | ----------------------------------------------------------------------------------------- |
+| `dns_namecheap_username`  | yes      | Username of your Namecheap account                                                        |
+| `dns_namecheap_token`     | yes      | API key from the API Access page (the older name `dns_namecheap_api_key` also works)      |
+| `dns_namecheap_client_ip` | no       | Public IPv4 address sent to Namecheap. If omitted, it is detected via `https://api.ipify.org` on every run |
 
 The path to this file is provided with the `--dns-namecheap-credentials` command-line argument.
 
