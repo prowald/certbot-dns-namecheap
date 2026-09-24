@@ -2,7 +2,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 
-version = '1.0.0.dev0'
+version = '1.1.0'
 
 # Remember to update local-oldest-requirements.txt when changing the minimum
 # acme/certbot version.
@@ -23,8 +23,7 @@ setup(
     version=version,
     description="Namecheap DNS Authenticator plugin for Certbot",
     url='https://github.com/prowald/certbot-dns-namecheap',
-    author="Certbot Project",
-    author_email='client-dev@letsencrypt.org',
+    author='Michael Prowald',
     license='Apache License 2.0',
     python_requires='>=3.8',
     classifiers=[
