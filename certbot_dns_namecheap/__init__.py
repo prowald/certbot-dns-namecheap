@@ -1,35 +1,40 @@
 """
-The `~certbot_dns_namecheap.dns_namecheap` plugin automates the process of
-completing a ``dns-01`` challenge (`~acme.challenges.DNS01`) by creating, and
-subsequently removing, TXT records using the Namecheap API.
+The `~certbot_dns_namecheap._internal.dns_namecheap` plugin automates the
+process of completing a ``dns-01`` challenge (`~acme.challenges.DNS01`) by
+creating, and subsequently removing, TXT records using the Namecheap API.
 
 
 Named Arguments
 ---------------
 
-===================================  ==========================================
-``--certbot-dns-namecheap:dns-namecheap-credentials`` Namecheap credentials_ INI file.
-                                                      (Required)
-
-===================================  ==========================================
+========================================  =====================================
+``--dns-namecheap-credentials``           Namecheap credentials_ INI file.
+                                          (Required)
+``--dns-namecheap-propagation-seconds``   The number of seconds to wait for DNS
+                                          to propagate before asking the ACME
+                                          server to verify the DNS record.
+                                          (Default: 120)
+========================================  =====================================
 
 
 Credentials
 -----------
 
 Use of this plugin requires a configuration file containing Namecheap
-API credentials for an account with the following access rules:
+API credentials. The API must be enabled for the account and the IP address
+given as ``dns_namecheap_client_ip`` must be whitelisted in Namecheap.
 
 .. code-block:: ini
    :name: credentials.ini
    :caption: Example credentials file:
 
-	# Namecheap API credentials used by Certbot
-	certbot_dns_namecheap:dns_namecheap_username=my-username
-	certbot_dns_namecheap:dns_namecheap_api_key=my-api-key
+   # Namecheap API credentials used by Certbot
+   dns_namecheap_username = my-username
+   dns_namecheap_token = my-api-key
+   dns_namecheap_client_ip = 203.0.113.1
 
 The path to this file must be provided using the
-``--certbot-dns-namecheap:dns-namecheap-credentials`` command-line argument.
+``--dns-namecheap-credentials`` command-line argument.
 
 .. caution::
    You should protect these API credentials as you would the password to your
@@ -54,8 +59,8 @@ Examples
    :caption: To acquire a certificate for ``example.com``
 
    certbot certonly \\
-     -a certbot-dns-namecheap:dns-namecheap \\
-     --certbot-dns-namecheap:dns-namecheap-credentials= ~/.secrets/certbot/namecheap.ini \\
+     --authenticator dns-namecheap \\
+     --dns-namecheap-credentials ~/.secrets/certbot/namecheap.ini \\
      -d example.com
 
 .. code-block:: bash
@@ -63,10 +68,9 @@ Examples
              ``www.example.com``
 
    certbot certonly \\
-     -a certbot-dns-namecheap:dns-namecheap \\
-     --certbot-dns-namecheap:dns-namecheap-credentials= ~/.secrets/certbot/namecheap.ini \\
-     -d example.com
+     --authenticator dns-namecheap \\
+     --dns-namecheap-credentials ~/.secrets/certbot/namecheap.ini \\
+     -d example.com \\
      -d www.example.com
-
 
 """

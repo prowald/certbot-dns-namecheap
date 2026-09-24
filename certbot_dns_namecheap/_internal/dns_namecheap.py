@@ -29,7 +29,7 @@ class Authenticator(dns_common_lexicon.LexiconDNSAuthenticator):
         self._add_provider_option('token',
                                   f'API token for Namecheap account, obtained from {API_URL}',
                                   'auth_token')
-        self._add_provider_option('client_ip', 
+        self._add_provider_option('client_ip',
                                   'IP address whitelisted in Namecheap',
                                   'auth_client_ip')
 
@@ -50,7 +50,7 @@ class Authenticator(dns_common_lexicon.LexiconDNSAuthenticator):
     def _handle_http_error(self, e: HTTPError, domain_name: str) -> errors.PluginError:
         hint = None
         if str(e).startswith('401 Client Error: Unauthorized for url:'):
-            hint = 'Are your email and API token values correct?'
+            hint = 'Are your username, API token and whitelisted client IP correct?'
 
         hint_disp = f' ({hint})' if hint else ''
 
