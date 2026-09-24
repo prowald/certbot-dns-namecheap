@@ -1,5 +1,5 @@
 Welcome to certbot-dns-namecheap's documentation!
-===========================================
+=================================================
 
 .. toctree::
    :maxdepth: 2
